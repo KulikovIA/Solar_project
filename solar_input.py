@@ -48,7 +48,6 @@ def parse_star_parameters(line, star):
     **star** — объект звезды.
     """
     data = line.split()
-    star.type = 'Star'
     star.R = int(data[1])
     star.color = data[2]
     star.m = float(data[3])
@@ -73,7 +72,6 @@ def parse_planet_parameters(line, planet):
     **planet** — объект планеты.
     """
     data = line.split()
-    planet.type = 'Planet'
     planet.R = int(data[1])
     planet.color = data[2]
     planet.m = float(data[3])
@@ -96,7 +94,8 @@ def write_space_objects_data_to_file(output_filename, space_objects):
     """
     with open(output_filename, 'w') as out_file:
         for obj in space_objects:
-            print(out_file, "%s %d %s %d %d %f %f" % (obj.type, obj.R, obj.color, obj.x, obj.y, obj.Vx, obj.Vy))
+            out_file.write( "%s %d %s %f %f %f %f %f" % (obj.type, obj.R, obj.color, obj.m, obj.x, obj.y, obj.Vx, obj.Vy))
+            out_file.write('\n')
 
 # FIXME: хорошо бы ещё сделать функцию, сохранающую статистику в заданный файл...
 
